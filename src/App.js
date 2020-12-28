@@ -106,36 +106,42 @@ function App() {
           return <CourseCard name ={item.name} grd = {item.grd} crd ={item.crd} del={onDeleteCourse} />
         })}
         
-        <label>Credit : </label>
+        <td>
+          <form onSubmit ={
+            e => addCourse(e)}>
+            <input type="text" placeholder="Course name" onChange = { e => 
+              setInputData({...inputData,name: e.currentTarget.value}) 
+            }/>
+              <input type="submit" value=" + "></input>
+        </form>
+        </td>
+        
+        <td>
+         <label> Credit : </label>
         <select onChange = { e => 
             setInputData({...inputData,crd: e.currentTarget.value}) 
           }>
           {credit.map(item => {
             return <option value={item}>{item}</option>
           })}
-        </select> 
-
-        <label> Grade : </label>
+        </select>  
+        </td>
+        
+        <td>
+          <label> Grade : </label>
         <select onChange = { e => 
            setInputData({...inputData,grd: e.currentTarget.value}) 
           }>
           {grade.map(item => {
             return <option value={item}>{item}</option>
           })}
-        </select>  
-
-        <form onSubmit ={
-          e => addCourse(e)}>
-          <input type="text" placeholder="Course name" onChange = { e => 
-            setInputData({...inputData,name: e.currentTarget.value}) 
-          }/>
-            <input type="submit" value=" + "></input>
-       </form>
-
+        </select> 
+        </td>
+         
       </div>
       {/* TODO add course input form */}
       {/* TODO display calculated GPA */}
-      <h2>GPA : {GPA}</h2>
+      <h2 className="bg-red-900 rounded-3xl text-white text-center">GPA  :  {GPA}</h2>
     </div>
   );
 }
